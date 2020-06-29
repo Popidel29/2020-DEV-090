@@ -1,8 +1,9 @@
-package com.example.a2020_dev_090
+package com.example.a2020_dev_090.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.a2020_dev_090.R
 
 class MainActivity : AppCompatActivity() {
 

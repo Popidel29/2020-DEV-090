@@ -6,7 +6,7 @@
     android:gravity="center"
     android:onClick="btnClick"
     android:background="@color/background"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
     <TableRow
         android:layout_width="match_parent"
