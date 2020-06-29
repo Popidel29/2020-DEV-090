@@ -2,14 +2,21 @@ package com.example.a2020_dev_090.model
 
 import com.example.a2020_dev_090.R
 
-class GameRepository(playerOneName: String, playerTwoName: String) {
+class GameRepository(playerOneName : String, playerTwoName: String){
 
-    private val playerOne = Player(playerOneName, "X", R.color.green)
-    private var playerTwo = Player(playerTwoName, "O", R.color.red)
+    private val playerOne = Player(playerOneName,"X", R.color.green)
+    private var playerTwo =  Player(playerTwoName,"O", R.color.red)
     private var activePlayer = playerOne
     private var moveCount = 0
 
-    private var board = Array(3) { Array(3) { Player("", "", R.color.white) } }
+    private var board = Array(3){Array(3){Player("","", R.color.white)} }
+
+    fun resetGame()
+    {
+        activePlayer = playerOne
+        board = Array(3){Array(3){Player("","", R.color.white)} }
+        moveCount = 0
+    }
 
     fun playGame( x : Int,  y: Int) : Player?
     {
@@ -37,25 +44,24 @@ class GameRepository(playerOneName: String, playerTwoName: String) {
     }
 
     fun checkWinner() : Player? {
-        var winner : Player ?= null
+        var winner: Player? = null
         //check row
-        for(i in 0..2){
-            if(board[i][0] == board[i][1] && board[i][1] == board[i][2]){
+        for (i in 0..2) {
+            if (board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
                 winner = board[i][0]
                 break
             }
         }
         //check col
-        for(i in 0..2){
-            if(board[0][i] == board[1][i] && board[1][i] == board[2][i]){
+        for (i in 0..2) {
+            if (board[0][i] == board[1][i] && board[1][i] == board[2][i]) {
                 winner = board[1][i]
                 break
             }
         }
         //check diagonal
-        for(i in 1..2){
-            if(board[0][0] != board[i][i])
-            {
+        for (i in 1..2) {
+            if (board[0][0] != board[i][i]) {
                 break
             }
             if (i == 2) {
@@ -63,8 +69,8 @@ class GameRepository(playerOneName: String, playerTwoName: String) {
             }
         }
         //check anti- diagonal
-        for(i in 1..2){
-            if (board[i][2 -i] != board[0][2]) {
+        for (i in 1..2) {
+            if (board[i][2 - i] != board[0][2]) {
                 break
             }
             if (i == 2) {
@@ -72,12 +78,6 @@ class GameRepository(playerOneName: String, playerTwoName: String) {
             }
         }
         switchPlayer()
-        return  winner
-    }
-    fun resetGame()
-    {
-        activePlayer = playerOne
-        board = Array(3){Array(3){Player("","", R.color.white)} }
-        moveCount = 0
+        return winner
     }
 }
